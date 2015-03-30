@@ -2,7 +2,6 @@
 
 echo "----------------------------------------";
 echo "Cleaning dist files...";
-rm -rf lib/docs;
 rm -rf lib/src/dist;
 
 echo "----------------------------------------";
