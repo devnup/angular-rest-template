@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Global</title>
+    <title>Source: src/angular-rest-template.js</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -60,126 +60,48 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="global.html">Global</h1>
+        <h1 class="page-title" data-filename="src_angular-rest-template.js.html">Source: src/angular-rest-template.js</h1>
         
 
 
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Angular Rest Template
+ * v0.0.1
+ *
+ * @alias com.devnup.rest
+ *
+ * @author luis@devnup.com
+ * @since 03/29/15.
+ */
+angular.module('com.devnup.rest', [
+  'ngResource'
+])
 
-<section>
-    
-<header>
-    <h2>
-    
-    </h2>
-    
-</header>  
+  .factory('$rest', ['$resource',
 
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-        
-        
-<dl class="details">
-    
-        
-    
-    
-    
+    /**
+     * Angular Rest Service
+     * v0.0.1
+     *
+     * @class
+     * @type {Function}
+     * @alias com.devnup.rest.$rest
+     */
+      function ($resource) {
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
+      return {
+        resource: $resource
+      };
 
-        
-        
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="app">app</h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Created by luiseduardobrito on 3/4/15.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
+    }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
+  ]);</code></pre>
+        </article>
+    </section>
 
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-</article>
-
-</section>  
 
 
 

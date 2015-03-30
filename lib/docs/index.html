@@ -17,7 +17,7 @@
     
     
     <script>
-    var config = {"monospaceLinks":true,"cleverLinks":true,"applicationName":"devnup/angular-colors-util - docs","default":{"outputSourceFiles":true},"linenums":true};
+    var config = {"monospaceLinks":true,"cleverLinks":true,"applicationName":"devnup/angular-rest-template - docs","default":{"outputSourceFiles":true},"linenums":true};
     </script>
     
 
@@ -27,7 +27,7 @@
 <div id="wrap" class="clearfix">
     
 <div class="navigation">
-    <h3 class="applicationName"><a href="index.html">devnup/angular-colors-util - docs</a></h3>
+    <h3 class="applicationName"><a href="index.html">devnup/angular-rest-template - docs</a></h3>
 
     <div class="search">
         <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
@@ -37,33 +37,15 @@
 
     <ul class="list">
     
-        <li class="item" data-name="com.devnup.color.$color">
+        <li class="item" data-name="com.devnup.rest.$rest">
             <span class="title">
-                <a href="com.devnup.color.$color.html">com.devnup.color.$color</a>
+                <a href="com.devnup.rest.$rest.html">com.devnup.rest.$rest</a>
                 
             </span>
             <ul class="members itemMembers">
             
             </ul>
             <ul class="methods itemMembers">
-                
-                <span class="subtitle">Methods</span>
-                
-                    <li data-name="com.devnup.color.$color#config"><a href="com.devnup.color.$color.html#config">config</a></li>
-                
-                    <li data-name="com.devnup.color.$color#generate"><a href="com.devnup.color.$color.html#generate">generate</a></li>
-                
-                    <li data-name="com.devnup.color.$color#hover"><a href="com.devnup.color.$color.html#hover">hover</a></li>
-                
-                    <li data-name="com.devnup.color.$color~distinctColors"><a href="com.devnup.color.$color.html#~distinctColors">distinctColors</a></li>
-                
-                    <li data-name="com.devnup.color.$color~distinctHexColors"><a href="com.devnup.color.$color.html#~distinctHexColors">distinctHexColors</a></li>
-                
-                    <li data-name="com.devnup.color.$color~hsvToRgb"><a href="com.devnup.color.$color.html#~hsvToRgb">hsvToRgb</a></li>
-                
-                    <li data-name="com.devnup.color.$color~rgbToHex"><a href="com.devnup.color.$color.html#~rgbToHex">rgbToHex</a></li>
-                
-                    <li data-name="com.devnup.color.$color~shadeColor"><a href="com.devnup.color.$color.html#~shadeColor">shadeColor</a></li>
                 
                 </ul>
             <ul class="typedefs itemMembers">
@@ -100,33 +82,21 @@
 
 
     <section>
-        <article class="readme"><h1>angular-colors-util</h1><h3>Installation</h3><p>Using Bower: <code>bower install --save angular-colors-util</code></p>
+        <article class="readme"><h1>angular-rest-template</h1><h3>Installation</h3><p>Using Bower: <code>bower install --save angular-rest-template</code></p>
 <h3>Browser Usage</h3><p>Include the library in your HTML file:</p>
 <pre class="prettyprint source lang-markup"><code>&lt;!-- Angular Colors Util (Minified) -->
-&lt;script type=&quot;text/javascript&quot; src=&quot;bower_components/angular-colors-util/lib/dist/angular-colors-util.min.js&quot;>&lt;/script>
+&lt;script type=&quot;text/javascript&quot; src=&quot;bower_components/angular-rest-template/lib/dist/js/angular-rest-template.min.js&quot;>&lt;/script>
 
 &lt;!-- Angular Colors Util (Full) -->
-&lt;script type=&quot;text/javascript&quot; src=&quot;bower_components/angular-colors-util/lib/dist/angular-colors-util.js&quot;>&lt;/script></code></pre><p>Include the module in your Angular app:</p>
+&lt;script type=&quot;text/javascript&quot; src=&quot;bower_components/angular-rest-template/lib/dist/js/angular-rest-template.js&quot;>&lt;/script></code></pre><p>Include the module in your Angular app:</p>
 <pre class="prettyprint source lang-javascript"><code>angular
-    .module('myApp', ['com.devnup.color'])
-    .controller('BodyCtrl', ['$scope', '$color', function($scope, $color) {
-
-        $scope.count = 5;
-
-        $scope.colors = $color.generate(count).map(function(c) {
-            return {
-                color: c,
-                hover: $color.hover(c)
-            }
-        });
-
-        console.info($scope.colors);
-
+    .module('myApp', ['com.devnup.rest'])
+    .controller('BodyCtrl', ['$scope', '$rest', function($scope, $rest) {
     }]);</code></pre><h3>Samples</h3><ul>
-<li><a href="http://angular-colors-util.snippets.devnup.com">Sample Color Generator (HTML + JS)</a></li>
+<li><a href="http://angular-rest-template.snippets.devnup.com">Sample Color Generator (HTML + JS)</a></li>
 </ul>
 <h3>Documentation</h3><ul>
-<li><a href="http://angular-colors-util.snippets.devnup.com/docs">API Reference (JSDoc)</a></li>
+<li><a href="http://angular-rest-template.snippets.devnup.com/docs">API Reference (JSDoc)</a></li>
 </ul>
 <h3>Authors</h3><ul>
 <li><a href="https://github.com/seijitamanaha">André Seiji</a> - <a href="mailto:seiji@devnup.com">seiji@devnup.com</a></li>
@@ -159,7 +129,7 @@ THE SOFTWARE.</p></article>
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Tue Mar 24 2015 09:28:16 GMT-0300 (BRT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Sun Mar 29 2015 21:21:23 GMT-0300 (BRT)
         </footer>
     </div>
 </div>

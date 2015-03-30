@@ -1,49 +1,37 @@
-angular-colors-util
+angular-rest-template
 ===================
 
 ### Installation
 
-Using Bower: ```bower install --save angular-colors-util```
+Using Bower: ```bower install --save angular-rest-template```
 
 ### Browser Usage
 
 Include the library in your HTML file:
 ```markup
 <!-- Angular Colors Util (Minified) -->
-<script type="text/javascript" src="bower_components/angular-colors-util/lib/dist/angular-colors-util.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-rest-template/lib/dist/js/angular-rest-template.min.js"></script>
 
 <!-- Angular Colors Util (Full) -->
-<script type="text/javascript" src="bower_components/angular-colors-util/lib/dist/angular-colors-util.js"></script>
+<script type="text/javascript" src="bower_components/angular-rest-template/lib/dist/js/angular-rest-template.js"></script>
 ```
 
 Include the module in your Angular app:
 ```javascript
 angular
-    .module('myApp', ['com.devnup.color'])
-    .controller('BodyCtrl', ['$scope', '$color', function($scope, $color) {
-
-        $scope.count = 5;
-
-        $scope.colors = $color.generate(count).map(function(c) {
-            return {
-                color: c,
-                hover: $color.hover(c)
-            }
-        });
-
-        console.info($scope.colors);
-
+    .module('myApp', ['com.devnup.rest'])
+    .controller('BodyCtrl', ['$scope', '$rest', function($scope, $rest) {
     }]);
 
 ```
 
 ### Samples
 
-- [Sample Color Generator (HTML + JS)](http://angular-colors-util.snippets.devnup.com)
+- [Sample Color Generator (HTML + JS)](http://angular-rest-template.snippets.devnup.com)
 
 ### Documentation
 
-- [API Reference (JSDoc)](http://angular-colors-util.snippets.devnup.com/docs)
+- [API Reference (JSDoc)](http://angular-rest-template.snippets.devnup.com/docs)
 
 ### Authors
 - [André Seiji](https://github.com/seijitamanaha) - [seiji@devnup.com](mailto:seiji@devnup.com)

@@ -6,15 +6,15 @@ module.exports = function (grunt) {
 
         copy: {
             main: {
-                src: 'lib/src/angular-colors-util.js',
-                dest: 'lib/dist/js/angular-colors-util.js'
+                src: 'lib/src/angular-rest-template.js',
+                dest: 'lib/dist/js/angular-rest-template.js'
             }
         },
 
         uglify: {
             minify: {
                 files: {
-                    'lib/dist/js/angular-colors-util.min.js': ['lib/dist/js/angular-colors-util.js']
+                    'lib/dist/js/angular-rest-template.min.js': ['lib/dist/js/angular-rest-template.js']
                 }
             }
         },

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="editorSample">
+<html ng-app="restPlayground">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Angular Colors Util - Sample Editor</title>
+    <title>Angular Rest Template - Playground</title>
     <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet"/>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet"/>
-    
+
 </head>
-<body ng-controller="EditorCtrl">
+<body ng-controller="PlaygroundCtrl">
 
 <!-- Begin page content -->
 <div class="container custom">
@@ -16,65 +16,28 @@
     <div class="page-header">
         <h4><a href="https://devnup.com">devnup</a> / <a href="http://snippets.devnup.com">snippets</a> /</h4>
 
-        <h1>angular colors util</h1>
+        <h1>angular rest template</h1>
     </div>
-    <p class="lead">Utility service for generating and handling colors inside AngularJS.</p>
+    <p class="lead">Utility service for REST APIs requests inside AngularJS.</p>
 
     <p>For technical details about the angular module checkout the <a href="/docs">API Reference</a></p>
 
     <p style="margin-bottom: 20px;">You can get the repository at
-        <a href="http://git.devnup.com/devnup/angular-colors-util">Devnup Official GitLab</a> or
-        <a href="http://github.com/devnup/angular-modal-alerts">GitHub</a>.
+        <a href="http://git.devnup.com/devnup/angular-rest-template">Devnup Official GitLab</a> or
+        <a href="http://github.com/devnup/angular-rest-template">GitHub</a>.
     </p>
 
-    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&repo=angular-colors-util&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&repo=angular-colors-util&type=watch&count=true&v=2" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&repo=angular-colors-util&type=fork&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&type=follow&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&repo=angular-rest-template&type=star&count=true"
+            frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&repo=angular-rest-template&type=watch&count=true&v=2"
+            frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&repo=angular-rest-template&type=fork&count=true"
+            frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=devnup&type=follow&count=true" frameborder="0" scrolling="0"
+            width="170px" height="20px"></iframe>
 
     <div>
-        <h3>Color Editor Sample</h3>
-
-        <form>
-            <div class="row">
-                <div class="col-xs-12 col-sm-3 form-group">
-                    <label for="number" class="control-label">Number:</label>
-                    <input type="number" class="form-control" id="number" value="20" placeholder="20">
-                </div>
-                <div class="col-xs-12 col-sm-3 form-group">
-                    <label for="saturation" class="control-label">Saturation:</label>
-                    <input type="number" class="form-control" id="saturation" value="70" placeholder="70">
-                </div>
-                <div class="col-xs-12 col-sm-3 form-group">
-                    <label for="value" class="control-label">Value:</label>
-                    <input type="number" class="form-control" id="value" value="80" placeholder="80">
-                </div>
-                <div class="col-xs-12 col-sm-3 form-group text-center" style="margin-top: 20px">
-                    <button type="submit" class="btn btn-primary btn-block btn-lg" ng-click="generateColors()">
-                        Gerar Cores
-                    </button>
-                </div>
-            </div>
-        </form>
-
-        <div class="container custom">
-
-            <hr>
-            <div class="col-xs-6 text-center">
-                <h1>Normal:</h1>
-
-                <div id="colorsBox">
-                    <!--Distinct Colors-->
-                </div>
-            </div>
-            <div class="col-xs-6 text-center">
-                <h1>Hover:</h1>
-
-                <div id="hoverColorsBox">
-                    <!--Distinct Colors-->
-                </div>
-            </div>
-        </div>
+        <h3>Rest Playground</h3>
 
     </div>
 </div>
@@ -88,8 +51,9 @@
 <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
 
-<script type="text/javascript" src="./dist/js/angular-colors-util.min.js"></script>
+<script type="text/javascript" src="./dist/js/angular-rest-template.min.js"></script>
 <script type="text/javascript" src="./sample.js"></script>
 
 </body>
