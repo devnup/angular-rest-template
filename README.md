@@ -59,7 +59,7 @@ angular
 
 ### Samples
 
-- [Sample Color Generator (HTML + JS)](http://angular-rest-template.snippets.devnup.com)
+- [Sample - Rest Playground (HTML + JS)](http://angular-rest-template.snippets.devnup.com)
 
 ### Documentation
 
