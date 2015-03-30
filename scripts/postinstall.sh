@@ -2,7 +2,8 @@
 
 echo "----------------------------------------";
 echo "Cleaning dist files...";
-rm -rf src/dist;
+rm -rf lib/docs;
+rm -rf lib/src/dist;
 
 echo "----------------------------------------";
 echo "Installing bower components...";
@@ -14,7 +15,7 @@ echo "Building files using Grunt...";
 
 echo "----------------------------------------";
 echo "Generating docs using JSDoc...";
-rm -rf lib/docs;
+
 ./node_modules/jsdoc/jsdoc.js -c conf.json
 
 echo "----------------------------------------";
