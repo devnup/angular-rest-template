@@ -14,6 +14,7 @@ echo "Building files using Grunt...";
 
 echo "----------------------------------------";
 echo "Generating docs using JSDoc...";
+rm -rf lib/docs;
 ./node_modules/jsdoc/jsdoc.js -c conf.json
 
 echo "----------------------------------------";
