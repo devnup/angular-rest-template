@@ -21,6 +21,38 @@ Include the module in your Angular app:
 angular
     .module('myApp', ['com.devnup.rest'])
     .controller('BodyCtrl', ['$scope', '$rest', function($scope, $rest) {
+
+      var rest = $rest.create({
+          base: 'http://api.devnup.com'
+      });
+
+      var cache = {
+        result: null,
+        errors: []
+      }
+
+      return {
+
+        // GET: http://api.devnup.com/hello/world
+        hello: rest.get('hello/world'),
+
+        // POST: http://api.devnup.com/hello/world
+        another_endpoint: $async.callback({
+
+            method: $emailAPI.post('another/endpoint', {
+              message: 'Hello world!'
+            }),
+
+            success: function(data) {
+                // Save to service cache before running the callback
+                cache.result = data;
+            },
+            error: function(data) {
+                 // Save to service error cache before running the callback
+                 cache.errors.push(data);
+             },
+        })
+      }
     }]);
 
 ```
