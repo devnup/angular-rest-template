@@ -37,7 +37,54 @@
             width="170px" height="20px"></iframe>
 
     <div>
+        <p>&nbsp;</p>
+
         <h3>Rest Playground</h3>
+
+        <p>&nbsp;</p>
+
+        <div class="col-xs-12">
+            <form class="form">
+                <label for="url">Params:</label>
+
+                <div class="form-group form-inline">
+                    <label for="url">URL: </label>
+
+                    <div class="input-group">
+                        <div class="input-group-addon">http://</div>
+                        <input type="text" class="form-control" id="url" placeholder="google.com" ng-model="input.url">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Go</button>
+                </div>
+
+                <label for="url">Params:</label>
+
+                <div class="form-group form-inline" ng-repeat="p in input.params">
+                    <input type="text" class="form-control" id="key" placeholder="Key"
+                           ng-model="p.key">
+                    <input type="text" class="form-control" id="val" placeholder="Value"
+                           ng-model="p.value">
+                    <button type="button" class="btn btn-danger"
+                            ng-click="input.params.splice($index, 1)"
+                            ng-if="$index !== input.params.length - 1">x
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="input.params.push({})"
+                            ng-if="$index === input.params.length - 1">+
+                    </button>
+                </div>
+
+                <label for="url">Result:</label>
+
+                <div class="form-group form-inline" ng-repeat="p in input.params">
+                    <textarea class="form-control col-xs-12"
+                              ng-model="result()">
+
+                    </textarea>
+                </div>
+
+            </form>
+        </div>
 
     </div>
 </div>
