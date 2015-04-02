@@ -36,7 +36,7 @@
     <iframe src="https://ghbtns.com/github-btn.html?user=devnup&type=follow&count=true" frameborder="0" scrolling="0"
             width="170px" height="20px"></iframe>
 
-    <div>
+    <div ng-cloak>
         <p>&nbsp;</p>
 
         <h3>Rest Playground</h3>
@@ -67,7 +67,9 @@
                 </div>
 
                 <div class="form-group form-inline" ng-if="input.cache.enabled">
+
                     <label for="url">Cache: </label>
+
                     <div class="input-group">
                         <input type="text" class="form-control" id="min" placeholder="min timeout (ms)"
                                ng-model="input.cache.max">
