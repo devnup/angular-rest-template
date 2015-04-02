@@ -51,7 +51,8 @@
                     <label for="url">URL: </label>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" id="url" placeholder="http://google.com" ng-model="input.url">
+                        <input type="text" class="form-control" id="url" placeholder="http://google.com"
+                               ng-model="input.url">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Go</button>
@@ -60,8 +61,20 @@
                 <div class="form-group form-inline">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="input.cache"> Enable cache
+                            <input type="checkbox" ng-model="input.cache.enabled"> Enable cache
                         </label>
+                    </div>
+                </div>
+
+                <div class="form-group form-inline" ng-if="input.cache.enabled">
+                    <label for="url">Cache: </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="min" placeholder="min timeout (ms)"
+                               ng-model="input.cache.max">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="max" placeholder="max timeout (ms)"
+                               ng-model="input.cache.min">
                     </div>
                 </div>
 
