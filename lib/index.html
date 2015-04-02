@@ -11,7 +11,7 @@
 <body ng-controller="PlaygroundCtrl">
 
 <!-- Begin page content -->
-<div class="container custom">
+<div class="container custom" style="padding-bottom: 250px;">
 
     <div class="page-header">
         <h4><a href="https://devnup.com">devnup</a> / <a href="http://snippets.devnup.com">snippets</a> /</h4>
@@ -44,15 +44,14 @@
         <p>&nbsp;</p>
 
         <div class="col-xs-12">
-            <form class="form">
+            <form class="form" ng-submit="refresh()">
                 <label for="url">Params:</label>
 
                 <div class="form-group form-inline">
                     <label for="url">URL: </label>
 
                     <div class="input-group">
-                        <div class="input-group-addon">http://</div>
-                        <input type="text" class="form-control" id="url" placeholder="google.com" ng-model="input.url">
+                        <input type="text" class="form-control" id="url" placeholder="http://google.com" ng-model="input.url">
                     </div>
                     <button type="submit" class="btn btn-primary">Go</button>
                 </div>
@@ -78,7 +77,7 @@
 
                 <div class="form-group form-inline" ng-repeat="p in input.params">
                     <textarea class="form-control col-xs-12"
-                              ng-model="result">
+                              ng-model="result" style="width:100%; min-height: 350px">
                     </textarea>
                 </div>
 
