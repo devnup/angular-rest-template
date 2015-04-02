@@ -69,6 +69,22 @@ angular
 - [André Seiji](https://github.com/seijitamanaha) - [seiji@devnup.com](mailto:seiji@devnup.com)
 - [Luís Eduardo Brito](https://github.com/luiseduardobrito) - [luis@devnup.com](mailto:luis@devnup.com)
 
+### Dependencies
+
+This repository is based in several open source components, most of them used to make Rest Playground so beautifully designed.
+
+The library itself would not be possible without some these awesome components, and you'll need to import them in your application to make angular-rest-templates work.
+
+In the Bower package there are standalone minified files with these dependencies already included.
+
+- [caolan/async](https://github.com/caolan/async)
+    - **Author**: [Caolan McMahon](https://github.com/caolan)
+    - **License**: [View in GitHub](https://raw.githubusercontent.com/caolan/async/master/LICENSE)
+
+- [gsklee/ngStorage](https://github.com/gsklee/ngStorage)
+    - **Author**: [G. Kay Lee](https://github.com/gsklee)
+    - **License**: [View in GitHub](https://raw.githubusercontent.com/gsklee/ngStorage/master/LICENSE)
+
 ### License
 
 The MIT License (MIT)
