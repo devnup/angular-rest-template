@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tutorial: index</title>
+    <title>Source: angular-rest-cache-storage.js</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -93,20 +93,81 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="tutorial-index_.html">Tutorial: index</h1>
-        <section>
+        <h1 class="page-title" data-filename="angular-rest-cache-storage.js.html">Source: angular-rest-cache-storage.js</h1>
+        
+
+
     
-<header>
-    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Angular Rest Cache - Storage Wrapper
+ *
+ * @alias com.devnup.rest.cache.storage
+ *
+ * @author luis@devnup.com
+ * @since 03/29/15.
+ */
+angular.module('com.devnup.rest.cache.storage', [
+  'ngStorage'
+])
+  .factory('$storageWrapper', [
+    '$rootScope', '$localStorage', '$sessionStorage',
 
-    <h2>index</h2>
-</header>  
+    /**
+     * Angular Rest Cache
+     *
+     * @class
+     * @alias com.devnup.rest.cache.storage.$storageWrapper
+     *
+     * @author luis@devnup.com
+     * @since 03/29/15.
+     */
+      function ($rootScope, $localStorage, $sessionStorage) {
 
-<article>
-    <p>git a</p>
-</article>
+      if (!$localStorage || !$sessionStorage) {
+        throw new Error('ngStorage is required');
+      }
 
-</section>  
+      var wrapDefault = function (stg) {
+        var def = stg.$default;
+        stg.$default = function () {
+          def.apply(arguments);
+          return stg;
+        };
+        return stg;
+      };
+
+      return {
+
+        /**
+         * Local storage wrapper
+         *
+         * @alias com.devnup.rest.cache.storage.$storageWrapper#$local
+         * @type {Function}
+         */
+        $local: function () {
+          return wrapDefault($localStorage);
+        },
+
+        /**
+         * Session storage wrapper
+         *
+         * @alias com.devnup.rest.cache.storage.$storageWrapper#$session
+         * @type {Function}
+         */
+        $session: function () {
+          return wrapDefault($sessionStorage);
+        }
+      }
+    }
+  ]);</code></pre>
+        </article>
+    </section>
+
+
+
+
 
 
         

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: angular-rest-cache.js</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"applicationName":"devnup/angular-rest-template - docs","default":{"outputSourceFiles":true},"linenums":true};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">devnup/angular-rest-template - docs</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+
+    <p style="color: white; margin: 14px;">Module Reference</p>
+
+    <ul class="list">
+    
+        <li class="item" data-name="com.devnup.rest.cache.$cache">
+            <span class="title">
+                <a href="com.devnup.rest.cache.$cache.html">com.devnup.rest.cache.$cache</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                <span class="subtitle">Methods</span>
+                
+                    <li data-name="com.devnup.rest.cache.$cache#bucket"><a href="com.devnup.rest.cache.$cache.html#bucket">bucket</a></li>
+                
+                    <li data-name="com.devnup.rest.cache.$cache#config"><a href="com.devnup.rest.cache.$cache.html#config">config</a></li>
+                
+                    <li data-name="com.devnup.rest.cache.$cache#destroy"><a href="com.devnup.rest.cache.$cache.html#destroy">destroy</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="com.devnup.rest.cache.storage.$storageWrapper">
+            <span class="title">
+                <a href="com.devnup.rest.cache.storage.$storageWrapper.html">com.devnup.rest.cache.storage.$storageWrapper</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                <span class="subtitle">Methods</span>
+                
+                    <li data-name="com.devnup.rest.cache.storage.$storageWrapper#$local"><a href="com.devnup.rest.cache.storage.$storageWrapper.html#$local">$local</a></li>
+                
+                    <li data-name="com.devnup.rest.cache.storage.$storageWrapper#$session"><a href="com.devnup.rest.cache.storage.$storageWrapper.html#$session">$session</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="angular-rest-cache.js.html">Source: angular-rest-cache.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Angular Rest Cache
+ *
+ * @alias com.devnup.rest.cache
+ *
+ * @author luis@devnup.com
+ * @since 03/29/15.
+ */
+angular.module('com.devnup.rest.cache', [
+  'com.devnup.rest.cache.storage'
+])
+  .factory('$cache', [
+    '$storageWrapper',
+
+    /**
+     * Angular Rest Cache
+     *
+     * @class
+     * @alias com.devnup.rest.cache.$cache
+     *
+     * @author luis@devnup.com
+     * @since 03/29/15.
+     */
+      function ($cache) {
+
+      // The cache default configuration
+      // TODO: put config for choosing storage type
+      var cache = $cache.$local().$default({
+        bucket: {},
+        config: {
+          min: 5000, // 5 seconds
+          max: 60000 // 1 minute
+        }
+      });
+
+      // Construct cache stuff
+      var construct = function (b, opt) {
+
+        opt = opt || {};
+
+        cache[b] = {
+          createdAt: Date.now(),
+          lastUpdated: Date.now(),
+          refresh: opt.refresh,
+          timeout: {
+            min: opt.min || cache.config.min,
+            max: opt.max || cache.config.max
+          }
+        };
+
+        return wrap(b);
+      };
+
+      // Destroy cache stuff
+      var destroy = function (b) {
+        if (b) {
+          cache[b] = {};
+        } else {
+          cache = {};
+        }
+      };
+
+      var wrap = function (b) {
+
+        // Get clean object from cache
+        var i = JSON.parse(JSON.stringify(cache[b]));
+
+        // Refresh bucket method wrapper
+        i.refresh = function (callback) {
+
+          // TODO: check if is initialized and last updated date
+          if (cache[b].refresh) {
+            cache[b].refresh(function (err, result) {
+              cache[b].lastUpdated = Date.now();
+              cache[b].result = result;
+              callback(err, cache[b]);
+            });
+          } else {
+            callback(null, cache[b]);
+          }
+        };
+
+        // Clear bucket method wrapper
+        i.clear = function () {
+          destroy(b);
+        };
+      };
+
+      // Bucket interface wrapper
+      var method = function (b) {
+        if (cache[b]) {
+          return wrap(cache[b]);
+        } else {
+          return construct.apply(arguments);
+        }
+      };
+
+      return {
+
+        /**
+         * Bucket selector
+         *
+         * @alias com.devnup.rest.cache.$cache#bucket
+         *
+         * @type {Function}
+         * @param {String} bucket The bucket name
+         */
+        bucket: function (bucket) {
+          return method.apply(this, [bucket]);
+        },
+
+        /**
+         * Destroy bucket cache
+         *
+         * @alias com.devnup.rest.cache.$cache#destroy
+         * @type {Function}
+         * @param {String} [bucket] The bucket name to destroy, if none will destroy all buckets
+         */
+        destroy: function (bucket) {
+          return destroy.apply(this, [bucket]);
+        },
+
+        /**
+         * Configure cache
+         *
+         * @alias com.devnup.rest.cache.$cache#config
+         *
+         * @type Function
+         * @param {{}} input The input configuration
+         * @param {Boolean} [input.fetch] If enabled will automatically refresh when max timeout is passed
+         * @param {Number} [input.min] The min interval in ms before refreshing cache
+         * @param {Number} [input.max] The max interval in ms to wait before automatically refreshing cache, if fetch is enable
+         */
+        config: function (input) {
+          input = input || {};
+          for (var k in input) {
+            if (input.hasOwnProperty(k)) {
+              cache.config[k] = input[k] || cache[k];
+            }
+          }
+        }
+      };
+
+    }])
+;</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Wed Apr 01 2015 23:41:49 GMT-0300 (BRT)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

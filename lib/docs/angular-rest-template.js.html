@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Source: src/angular-rest-template.js</title>
+    <title>Source: angular-rest-template.js</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,11 +37,63 @@
 
     <ul class="list">
     
+        <li class="item" data-name="com.devnup.rest.cache.$cache">
+            <span class="title">
+                <a href="com.devnup.rest.cache.$cache.html">com.devnup.rest.cache.$cache</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                <span class="subtitle">Methods</span>
+                
+                    <li data-name="com.devnup.rest.cache.$cache#bucket"><a href="com.devnup.rest.cache.$cache.html#bucket">bucket</a></li>
+                
+                    <li data-name="com.devnup.rest.cache.$cache#config"><a href="com.devnup.rest.cache.$cache.html#config">config</a></li>
+                
+                    <li data-name="com.devnup.rest.cache.$cache#destroy"><a href="com.devnup.rest.cache.$cache.html#destroy">destroy</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="com.devnup.rest.cache.storage.$storageWrapper">
+            <span class="title">
+                <a href="com.devnup.rest.cache.storage.$storageWrapper.html">com.devnup.rest.cache.storage.$storageWrapper</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                <span class="subtitle">Methods</span>
+                
+                    <li data-name="com.devnup.rest.cache.storage.$storageWrapper#$local"><a href="com.devnup.rest.cache.storage.$storageWrapper.html#$local">$local</a></li>
+                
+                    <li data-name="com.devnup.rest.cache.storage.$storageWrapper#$session"><a href="com.devnup.rest.cache.storage.$storageWrapper.html#$session">$session</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
     </ul>
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="src_angular-rest-template.js.html">Source: src/angular-rest-template.js</h1>
+        <h1 class="page-title" data-filename="angular-rest-template.js.html">Source: angular-rest-template.js</h1>
         
 
 
@@ -57,10 +109,44 @@
  * @author luis@devnup.com
  * @since 03/29/15.
  */
-angular.module('com.devnup.rest', [])
-
-
+angular.module('com.devnup.rest', [
+  'com.devnup.rest.cache'
+])
   .factory('$async', [function () {
+
+    async.wrapper = function (request, arguments) {
+
+      var fn = {
+        success: angular.noop,
+        error: angular.noop
+      };
+
+      request
+        .apply(this, arguments)
+        .success(function (data) {
+          fn.success(data);
+        })
+        .error(function (err) {
+          fn.error(err);
+        });
+
+      var method = {
+        success: function (callback) {
+          fn.success = callback;
+          return method;
+        },
+        error: function (callback) {
+          fn.error = callback;
+          return method;
+        },
+        cache: function (opt) {
+          // TODO: implement cache integration
+          return method;
+        }
+      };
+
+      return method;
+    };
 
     async.callback = function (opt) {
 
@@ -120,7 +206,7 @@ angular.module('com.devnup.rest', [])
    * @param {angular.$http} $http The angular $http service
    * @returns {{get: {HttpPromise}, post: {HttpPromise}, put: {HttpPromise}, delete: {HttpPromise}}}
    */
-  ['$async', '$http',
+  ['$async', '$http', '$cache',
     function ($async, $http) {
 
       var base = '/api/';
@@ -157,7 +243,7 @@ angular.module('com.devnup.rest', [])
          * @returns {HttpPromise}
          */
         'get': function (action, input) {
-          return $http.get(base + action, input);
+          return $async.wrapper($http.get, [base + action, input]);
         },
 
         /**
@@ -178,7 +264,7 @@ angular.module('com.devnup.rest', [])
          * @returns {HttpPromise}
          */
         'post': function (action, input) {
-          return $http.post(base + action, input);
+          return $async.wrapper($http.post, [base + action, input]);
         },
 
         /**
@@ -191,7 +277,7 @@ angular.module('com.devnup.rest', [])
          * @returns {HttpPromise}
          */
         'put': function (action, input) {
-          return $http.put(base + action, input);
+          return $async.wrapper($http.put, [base + action, input]);
         },
 
         /**
@@ -204,7 +290,7 @@ angular.module('com.devnup.rest', [])
          * @returns {HttpPromise}
          */
         'delete': function (action, input) {
-          return $http.delete(base + action, input);
+          return $async.wrapper($http.delete, [base + action, input]);
         }
       }
 
@@ -220,7 +306,7 @@ angular.module('com.devnup.rest', [])
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Wed Apr 01 2015 21:56:00 GMT-0300 (BRT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Wed Apr 01 2015 23:41:49 GMT-0300 (BRT)
         </footer>
     </div>
 </div>
