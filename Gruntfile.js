@@ -68,7 +68,7 @@ module.exports = function (grunt) {
     clean: ["lib/dist/", "lib/assets/css/"],
 
     watch: {
-      files: ['lib/**'],
+      files: ['lib/src/**', 'lib/assets/less/**', 'lib/bower_components/**', 'lib/index.html', 'lib/sample.js'],
       tasks: ['dev']
     }
   });
@@ -83,4 +83,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('dev', ['clean', 'concat', 'uglify', 'less', 'cssmin']);
   grunt.registerTask('default', ['dev']);
+
 };
