@@ -26,34 +26,28 @@ angular
           base: 'http://api.devnup.com'
       });
 
-      var cache = {
-        result: null,
-        errors: []
-      }
+      // Perform request and set enable cache
+      rest.get('hello/world', {
 
-      return {
+        cache: {
+          min: 60000, // 1 minute
+          max: 300000 // 5 minutes
+        }
 
-        // GET: http://api.devnup.com/hello/world
-        hello: rest.get('hello/world'),
+      )).success(function(data) {
 
-        // POST: http://api.devnup.com/hello/world
-        another_endpoint: $async.callback({
+        // Will be refreshed every 5 minutes automatically
+        $scope.result = data;
 
-            method: $emailAPI.post('another/endpoint', {
-              message: 'Hello world!'
-            }),
+      }).error(function(e) {
 
-            success: function(data) {
-                // Save to service cache before running the callback
-                cache.result = data;
-            },
-            error: function(data) {
-                 // Save to service error cache before running the callback
-                 cache.errors.push(data);
-             },
-        })
-      }
-    }]);
+        console.error(e);
+
+      })
+
+    }
+  }
+]);
 
 ```
 
