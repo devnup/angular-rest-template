@@ -1,6 +1,6 @@
 {
   "name": "angular-rest-template",
-  "version": "0.0.5-alpha",
+  "version": "0.0.7-alpha",
   "description": "Utility service for REST APIs requests",
   "scripts": {
     "postinstall": "./scripts/postinstall.sh",
