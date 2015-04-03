@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Class: $restUtil</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -162,116 +162,126 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="index.html">Index</h1>
+        <h1 class="page-title" data-filename="com.devnup.rest.util.$restUtil.html">Class: $restUtil</h1>
         
 
 
+
+<section>
+    
+<header>
+    <h2>
+    $restUtil
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="$restUtil">
+            
+            new com.devnup.rest.util.$restUtil<span class="signature">()</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="angular-rest-util.js.html">angular-rest-util.js</a>, <a href="angular-rest-util.js.html#line20">line 20</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Angular Rest Util Service</p>
+<p>Requires Async</p>
+    </div>
     
 
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
 
-    <h3> </h3>
+    
+    
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>luis@devnup.com</li>
+        </ul>
+    </dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-
-
-
-
-
-
+    
+    
 
     
 
+    
+    
+    
+    
+    
+    
+    
+</dd>
 
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</article>
 
-
-    <section>
-        <article class="readme"><h1>angular-rest-template</h1><h3>Installation</h3><p>Using Bower: <code>bower install --save angular-rest-template</code></p>
-<h3>Browser Usage</h3><p>Include the library in your HTML file:</p>
-<pre class="prettyprint source lang-markup"><code>&lt;!-- Angular Colors Util (Minified) -->
-&lt;script type=&quot;text/javascript&quot; src=&quot;bower_components/angular-rest-template/lib/dist/js/angular-rest-template.min.js&quot;>&lt;/script>
-
-&lt;!-- Angular Colors Util (Full) -->
-&lt;script type=&quot;text/javascript&quot; src=&quot;bower_components/angular-rest-template/lib/dist/js/angular-rest-template.js&quot;>&lt;/script></code></pre><p>Include the module in your Angular app:</p>
-<pre class="prettyprint source lang-javascript"><code>angular
-    .module('myApp', ['com.devnup.rest'])
-    .controller('BodyCtrl', ['$scope', '$rest', function($scope, $rest) {
-
-      var rest = $rest.create({
-          base: 'http://api.devnup.com'
-      });
-
-      var cache = {
-        result: null,
-        errors: []
-      }
-
-      return {
-
-        // GET: http://api.devnup.com/hello/world
-        hello: rest.get('hello/world'),
-
-        // POST: http://api.devnup.com/hello/world
-        another_endpoint: $async.callback({
-
-            method: $emailAPI.post('another/endpoint', {
-              message: 'Hello world!'
-            }),
-
-            success: function(data) {
-                // Save to service cache before running the callback
-                cache.result = data;
-            },
-            error: function(data) {
-                 // Save to service error cache before running the callback
-                 cache.errors.push(data);
-             },
-        })
-      }
-    }]);</code></pre><h3>Samples</h3><ul>
-<li><a href="http://angular-rest-template.snippets.devnup.com">Sample - Rest Playground (HTML + JS)</a></li>
-</ul>
-<h3>Documentation</h3><ul>
-<li><a href="http://angular-rest-template.snippets.devnup.com/docs">API Reference (JSDoc)</a></li>
-</ul>
-<h3>Authors</h3><ul>
-<li><a href="https://github.com/seijitamanaha">André Seiji</a> - <a href="mailto:seiji@devnup.com">seiji@devnup.com</a></li>
-<li><a href="https://github.com/luiseduardobrito">Luís Eduardo Brito</a> - <a href="mailto:luis@devnup.com">luis@devnup.com</a></li>
-</ul>
-<h3>Dependencies</h3><p>This repository is based in several open source components, most of them used to make Rest Playground so beautifully designed.</p>
-<p>The library itself would not be possible without some these awesome components, and you'll need to import them in your application to make angular-rest-templates work.</p>
-<p>In the Bower package there are standalone minified files with these dependencies already included.</p>
-<ul>
-<li><p><a href="https://github.com/caolan/async">caolan/async</a></p>
-<ul>
-<li><strong>Author</strong>: <a href="https://github.com/caolan">Caolan McMahon</a></li>
-<li><strong>License</strong>: <a href="https://raw.githubusercontent.com/caolan/async/master/LICENSE">View in GitHub</a></li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gsklee/ngStorage">gsklee/ngStorage</a></p>
-<ul>
-<li><strong>Author</strong>: <a href="https://github.com/gsklee">G. Kay Lee</a></li>
-<li><strong>License</strong>: <a href="https://raw.githubusercontent.com/gsklee/ngStorage/master/LICENSE">View in GitHub</a></li>
-</ul>
-</li>
-</ul>
-<h3>License</h3><p>The MIT License (MIT)</p>
-<p>Copyright (c) 2015 - Devnup Solutions</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p></article>
-    </section>
-
+</section>  
 
 
 

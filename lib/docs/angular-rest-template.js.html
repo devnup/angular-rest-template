@@ -37,6 +37,37 @@
 
     <ul class="list">
     
+        <li class="item" data-name="com.devnup.rest.$rest">
+            <span class="title">
+                <a href="com.devnup.rest.$rest.html">com.devnup.rest.$rest</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                <span class="subtitle">Methods</span>
+                
+                    <li data-name="com.devnup.rest.$rest#config"><a href="com.devnup.rest.$rest.html#config">config</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#delete"><a href="com.devnup.rest.$rest.html#delete">delete</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#get"><a href="com.devnup.rest.$rest.html#get">get</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#post"><a href="com.devnup.rest.$rest.html#post">post</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#put"><a href="com.devnup.rest.$rest.html#put">put</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="com.devnup.rest.cache.$cache">
             <span class="title">
                 <a href="com.devnup.rest.cache.$cache.html">com.devnup.rest.cache.$cache</a>
@@ -54,6 +85,25 @@
                     <li data-name="com.devnup.rest.cache.$cache#config"><a href="com.devnup.rest.cache.$cache.html#config">config</a></li>
                 
                     <li data-name="com.devnup.rest.cache.$cache#destroy"><a href="com.devnup.rest.cache.$cache.html#destroy">destroy</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="com.devnup.rest.cache.bucket.$cacheBucket">
+            <span class="title">
+                <a href="com.devnup.rest.cache.bucket.$cacheBucket.html">com.devnup.rest.cache.bucket.$cacheBucket</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
                 
                 </ul>
             <ul class="typedefs itemMembers">
@@ -89,6 +139,25 @@
             </ul>
         </li>
     
+        <li class="item" data-name="com.devnup.rest.util.$restUtil">
+            <span class="title">
+                <a href="com.devnup.rest.util.$restUtil.html">com.devnup.rest.util.$restUtil</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
     </ul>
 
 </div>
@@ -105,116 +174,40 @@
  * v0.0.1
  *
  * @alias com.devnup.rest
- *
  * @author luis@devnup.com
- * @since 03/29/15.
  */
 angular.module('com.devnup.rest', [
-  'com.devnup.rest.cache'
+  'com.devnup.rest.cache',
+  'com.devnup.rest.util'
 ])
-  .factory('$async', [function () {
+  .factory('$rest', [
 
-    async.wrapper = function (request, arguments) {
+    '$restUtil', '$http', '$cache',
 
-      var fn = {
-        success: angular.noop,
-        error: angular.noop
-      };
-
-      request
-        .apply(this, arguments)
-        .success(function (data) {
-          fn.success(data);
-        })
-        .error(function (err) {
-          fn.error(err);
-        });
-
-      var method = {
-        success: function (callback) {
-          fn.success = callback;
-          return method;
-        },
-        error: function (callback) {
-          fn.error = callback;
-          return method;
-        },
-        cache: function (opt) {
-          // TODO: implement cache integration
-          return method;
-        }
-      };
-
-      return method;
-    };
-
-    async.callback = function (opt) {
-
-      var cache = {
-        success: angular.noop,
-        error: angular.noop
-      };
-
-      opt = opt || {};
-      opt.method = opt.method || angular.copy(cache);
-      opt.success = opt.success || angular.noop;
-      opt.error = opt.success || angular.noop;
-
-      opt.method
-        .success(function (data) {
-          if (data.error) {
-            opt.error(data.error);
-            cache.error(data.error);
-          } else {
-            opt.success(data);
-            cache.success(data);
-          }
-        })
-        .error(function (error) {
-          opt.error(error);
-          cache.error(error);
-        });
-
-      var out = {
-        success: function (cb) {
-          cache.success = cb;
-          return out;
-        },
-        error: function (cb) {
-          cache.error = cb;
-          return out;
-        }
-      };
-
-      return out;
-    };
-
-    return async;
-
-  }])
-
-  .factory('$rest',
-
-  /**
-   * Angular Rest Service
-   * v0.0.1
-   *
-   * @class
-   * @type {Function}
-   * @alias com.devnup.rest.$rest
-   *
-   * @param {angular.$http} $http The angular $http service
-   * @returns {{get: {HttpPromise}, post: {HttpPromise}, put: {HttpPromise}, delete: {HttpPromise}}}
-   */
-  ['$async', '$http', '$cache',
-    function ($async, $http) {
+    /**
+     * Angular Rest Service
+     *
+     * @class
+     * @type {Function}
+     * @alias com.devnup.rest.$rest
+     *
+     * @param {com.devnup.rest.util.$util} $util The $util service
+     * @param {angular.$http} $http The angular $http service
+     * @returns {{get: {HttpPromise}, post: {HttpPromise}, put: {HttpPromise}, delete: {HttpPromise}}}
+     */
+      function ($util, $http, $cache) {
 
       var base = '/api/';
+      var cache = false;
+
+      var isCacheEnabled = function () {
+        return !!cache;
+      };
 
       // Service public interface
       return {
 
-        'callback': $async.callback,
+        'callback': $util.callback,
 
         /**
          * Set configuration variables
@@ -225,7 +218,9 @@ angular.module('com.devnup.rest', [
          * @param {String} input.base The base to all requests
          */
         'config': function (input) {
-          base = input.base
+          base = input.base;
+          cache = input.cache;
+          $cache.config(cache);
         },
 
         /**
@@ -240,10 +235,28 @@ angular.module('com.devnup.rest', [
          *
          * @param {String} action The action path
          * @param {Object} input The input to the GET request
+         * @param {Object} config The cache config
          * @returns {HttpPromise}
          */
-        'get': function (action, input) {
-          return $async.wrapper($http.get, [base + action, input]);
+        'get': function (action, input, config) {
+
+          var request = $http.get;
+
+          // If cache is enabled, call action bucket
+          if (isCacheEnabled() &amp;&amp; (config.cache !== false &amp;&amp; config.cache.enabled !== false)) {
+
+            var bucket = $cache.bucket('GET:' + action, {
+              refresh: function () {
+                return $util.wrapper(request, [base + action, input, config.cache]);
+              }
+            });
+
+            // Refresh the bucket
+            return bucket.refresh();
+          }
+
+          // If cache is disabled, just make the request
+          return $util.wrapper(request, [base + action, input, config.cache]);
         },
 
         /**
@@ -260,11 +273,29 @@ angular.module('com.devnup.rest', [
          * });
          *
          * @param {String} action The action path
-         * @param {Object} input The input to the GET request
+         * @param {Object} input The input to the POST request
+         * @param {Object} config The cache config
          * @returns {HttpPromise}
          */
-        'post': function (action, input) {
-          return $async.wrapper($http.post, [base + action, input]);
+        'post': function (action, input, config) {
+
+          var request = $http.post;
+
+          // If cache is enabled, call action bucket
+          if (isCacheEnabled() &amp;&amp; config.cache !== false) {
+
+            var bucket = $cache.bucket('POST:' + action, {
+              refresh: function () {
+                return $util.wrapper(request, [base + action, input, config.cache])
+              }
+            });
+
+            // Refresh the bucket
+            return bucket.refresh();
+          }
+
+          // If cache is disabled, just make the request
+          return $util.wrapper(request, [base + action, input, config.cache]);
         },
 
         /**
@@ -277,7 +308,24 @@ angular.module('com.devnup.rest', [
          * @returns {HttpPromise}
          */
         'put': function (action, input) {
-          return $async.wrapper($http.put, [base + action, input]);
+
+          var request = $http.put;
+
+          // If cache is enabled, call action bucket
+          if (isCacheEnabled() &amp;&amp; config.cache !== false) {
+
+            var bucket = $cache.bucket('PUT:' + action, {
+              refresh: function () {
+                return $util.wrapper(request, [base + action, input, config.cache]);
+              }
+            });
+
+            // Refresh the bucket
+            return bucket.refresh();
+          }
+
+          // If cache is disabled, just make the request
+          return $util.wrapper(request, [base + action, input, config.cache]);
         },
 
         /**
@@ -289,12 +337,30 @@ angular.module('com.devnup.rest', [
          * @param {Object} input The input to the GET request
          * @returns {HttpPromise}
          */
-        'delete': function (action, input) {
-          return $async.wrapper($http.delete, [base + action, input]);
+        'delete': function (action, input, config) {
+
+          var request = $http.delete;
+
+          // If cache is enabled, call action bucket
+          if (isCacheEnabled() &amp;&amp; config.cache !== false) {
+
+            var bucket = $cache.bucket('DEL:' + action, {
+              refresh: function () {
+                return $util.wrapper(request, [base + action, input, config.cache]);
+              }
+            });
+
+            // Refresh the bucket
+            return bucket.refresh();
+          }
+
+          // If cache is disabled, just make the request
+          return $util.wrapper(request, [base + action, input, config.cache]);
+
         }
       }
-
-    }]);</code></pre>
+    }
+  ]);</code></pre>
         </article>
     </section>
 
@@ -306,7 +372,7 @@ angular.module('com.devnup.rest', [
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Wed Apr 01 2015 23:41:49 GMT-0300 (BRT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Fri Apr 03 2015 17:18:54 GMT-0300 (BRT)
         </footer>
     </div>
 </div>

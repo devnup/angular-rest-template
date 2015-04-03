@@ -37,6 +37,37 @@
 
     <ul class="list">
     
+        <li class="item" data-name="com.devnup.rest.$rest">
+            <span class="title">
+                <a href="com.devnup.rest.$rest.html">com.devnup.rest.$rest</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                <span class="subtitle">Methods</span>
+                
+                    <li data-name="com.devnup.rest.$rest#config"><a href="com.devnup.rest.$rest.html#config">config</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#delete"><a href="com.devnup.rest.$rest.html#delete">delete</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#get"><a href="com.devnup.rest.$rest.html#get">get</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#post"><a href="com.devnup.rest.$rest.html#post">post</a></li>
+                
+                    <li data-name="com.devnup.rest.$rest#put"><a href="com.devnup.rest.$rest.html#put">put</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="com.devnup.rest.cache.$cache">
             <span class="title">
                 <a href="com.devnup.rest.cache.$cache.html">com.devnup.rest.cache.$cache</a>
@@ -54,6 +85,25 @@
                     <li data-name="com.devnup.rest.cache.$cache#config"><a href="com.devnup.rest.cache.$cache.html#config">config</a></li>
                 
                     <li data-name="com.devnup.rest.cache.$cache#destroy"><a href="com.devnup.rest.cache.$cache.html#destroy">destroy</a></li>
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="com.devnup.rest.cache.bucket.$cacheBucket">
+            <span class="title">
+                <a href="com.devnup.rest.cache.bucket.$cacheBucket.html">com.devnup.rest.cache.bucket.$cacheBucket</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
                 
                 </ul>
             <ul class="typedefs itemMembers">
@@ -89,6 +139,25 @@
             </ul>
         </li>
     
+        <li class="item" data-name="com.devnup.rest.util.$restUtil">
+            <span class="title">
+                <a href="com.devnup.rest.util.$restUtil.html">com.devnup.rest.util.$restUtil</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+                
+                </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
     </ul>
 
 </div>
@@ -104,98 +173,27 @@
  * Angular Rest Cache
  *
  * @alias com.devnup.rest.cache
- *
  * @author luis@devnup.com
- * @since 03/29/15.
  */
 angular.module('com.devnup.rest.cache', [
-  'com.devnup.rest.cache.storage'
+  'com.devnup.rest.cache.storage',
+  'com.devnup.rest.cache.bucket',
+  'com.devnup.rest.util'
 ])
   .factory('$cache', [
-    '$storageWrapper',
+
+    '$cacheBucket',
 
     /**
      * Angular Rest Cache
      *
+     * This is the public interface for the cache modules, wraps all its functionality
+     *
      * @class
      * @alias com.devnup.rest.cache.$cache
-     *
      * @author luis@devnup.com
-     * @since 03/29/15.
      */
-      function ($cache) {
-
-      // The cache default configuration
-      // TODO: put config for choosing storage type
-      var cache = $cache.$local().$default({
-        bucket: {},
-        config: {
-          min: 5000, // 5 seconds
-          max: 60000 // 1 minute
-        }
-      });
-
-      // Construct cache stuff
-      var construct = function (b, opt) {
-
-        opt = opt || {};
-
-        cache[b] = {
-          createdAt: Date.now(),
-          lastUpdated: Date.now(),
-          refresh: opt.refresh,
-          timeout: {
-            min: opt.min || cache.config.min,
-            max: opt.max || cache.config.max
-          }
-        };
-
-        return wrap(b);
-      };
-
-      // Destroy cache stuff
-      var destroy = function (b) {
-        if (b) {
-          cache[b] = {};
-        } else {
-          cache = {};
-        }
-      };
-
-      var wrap = function (b) {
-
-        // Get clean object from cache
-        var i = JSON.parse(JSON.stringify(cache[b]));
-
-        // Refresh bucket method wrapper
-        i.refresh = function (callback) {
-
-          // TODO: check if is initialized and last updated date
-          if (cache[b].refresh) {
-            cache[b].refresh(function (err, result) {
-              cache[b].lastUpdated = Date.now();
-              cache[b].result = result;
-              callback(err, cache[b]);
-            });
-          } else {
-            callback(null, cache[b]);
-          }
-        };
-
-        // Clear bucket method wrapper
-        i.clear = function () {
-          destroy(b);
-        };
-      };
-
-      // Bucket interface wrapper
-      var method = function (b) {
-        if (cache[b]) {
-          return wrap(cache[b]);
-        } else {
-          return construct.apply(arguments);
-        }
-      };
+      function ($Bucket) {
 
       return {
 
@@ -206,9 +204,10 @@ angular.module('com.devnup.rest.cache', [
          *
          * @type {Function}
          * @param {String} bucket The bucket name
+         * @param {Object} config The config object
          */
-        bucket: function (bucket) {
-          return method.apply(this, [bucket]);
+        bucket: function (bucket, config) {
+          return $Bucket.selector(bucket, config);
         },
 
         /**
@@ -219,7 +218,7 @@ angular.module('com.devnup.rest.cache', [
          * @param {String} [bucket] The bucket name to destroy, if none will destroy all buckets
          */
         destroy: function (bucket) {
-          return destroy.apply(this, [bucket]);
+          return $Bucket.destroy(bucket);
         },
 
         /**
@@ -234,17 +233,11 @@ angular.module('com.devnup.rest.cache', [
          * @param {Number} [input.max] The max interval in ms to wait before automatically refreshing cache, if fetch is enable
          */
         config: function (input) {
-          input = input || {};
-          for (var k in input) {
-            if (input.hasOwnProperty(k)) {
-              cache.config[k] = input[k] || cache[k];
-            }
-          }
+          return $Bucket.config(input);
         }
       };
 
-    }])
-;</code></pre>
+    }]);</code></pre>
         </article>
     </section>
 
@@ -256,7 +249,7 @@ angular.module('com.devnup.rest.cache', [
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Wed Apr 01 2015 23:41:49 GMT-0300 (BRT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Fri Apr 03 2015 17:18:54 GMT-0300 (BRT)
         </footer>
     </div>
 </div>

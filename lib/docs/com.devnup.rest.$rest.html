@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: $cache</title>
+    <title>Class: $rest</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -162,7 +162,7 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="com.devnup.rest.cache.$cache.html">Class: $cache</h1>
+        <h1 class="page-title" data-filename="com.devnup.rest.$rest.html">Class: $rest</h1>
         
 
 
@@ -171,7 +171,7 @@
     
 <header>
     <h2>
-    $cache
+    $rest
     </h2>
     
 </header>  
@@ -184,14 +184,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="$cache">
+        <h4 class="name" id="$rest">
             
-            new com.devnup.rest.cache.$cache<span class="signature">()</span>
+            new com.devnup.rest.$rest<span class="signature">($util, $http)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Object}</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="angular-rest-cache.js.html">angular-rest-cache.js</a>, <a href="angular-rest-cache.js.html#line25">line 25</a>
+            <a href="angular-rest-template.js.html">angular-rest-template.js</a>, <a href="angular-rest-template.js.html#line27">line 27</a>
         </div>
         
     </div>
@@ -202,104 +202,7 @@
     
     
     <div class="description">
-        <p>Angular Rest Cache</p>
-<p>This is the public interface for the cache modules, wraps all its functionality</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>luis@devnup.com</li>
-        </ul>
-    </dd>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Methods</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="bucket">
-            
-            bucket<span class="signature">(bucket, config)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="angular-rest-cache.js.html">angular-rest-cache.js</a>, <a href="angular-rest-cache.js.html#line38">line 38</a>
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Bucket selector</p>
+        <p>Angular Rest Service</p>
     </div>
     
 
@@ -330,13 +233,13 @@
 	
         <tr>
             
-                <td class="name"><code>bucket</code></td>
+                <td class="name"><code>$util</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">com.devnup.rest.util.$util</span>
 
 
             
@@ -346,20 +249,20 @@
             
             <td class="description last">
                 
-                <p>The bucket name</p></td>
+                <p>The $util service</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name"><code>$http</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">angular.$http</span>
 
 
             
@@ -369,7 +272,7 @@
             
             <td class="description last">
                 
-                <p>The config object</p></td>
+                <p>The angular $http service</p></td>
         </tr>
 	
 	
@@ -414,9 +317,32 @@
     
     
     
+
+
+    
+    
+    
 </dd>
 
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
         
+        <dl>
             
 <dt>
     <div class="nameContainer">
@@ -427,7 +353,7 @@
     
         
         <div class="tag-source">
-            <a href="angular-rest-cache.js.html">angular-rest-cache.js</a>, <a href="angular-rest-cache.js.html#line64">line 64</a>
+            <a href="angular-rest-template.js.html">angular-rest-template.js</a>, <a href="angular-rest-template.js.html#line49">line 49</a>
         </div>
         
     </div>
@@ -438,7 +364,7 @@
     
     
     <div class="description">
-        <p>Configure cache</p>
+        <p>Set configuration variables</p>
     </div>
     
 
@@ -485,7 +411,7 @@
             
             <td class="description last">
                 
-                <p>The input configuration</p>
+                <p>The input config</p>
                 
 
 <table class="params">
@@ -508,13 +434,13 @@
 	
         <tr>
             
-                <td class="name"><code>fetch</code></td>
+                <td class="name"><code>base</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">String</span>
 
 
             
@@ -524,74 +450,7 @@
             
             <td class="description last">
                 
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>If enabled will automatically refresh when max timeout is passed</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>min</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The min interval in ms before refreshing cache</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>max</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The max interval in ms to wait before automatically refreshing cache, if fetch is enable</p></td>
+                <p>The base to all requests</p></td>
         </tr>
 	
 	
@@ -648,14 +507,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="destroy">
+        <h4 class="name" id="delete">
             
-            destroy<span class="signature">(<span class="optional">bucket</span>)</span>
+            delete<span class="signature">(action, input)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{HttpPromise}</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="angular-rest-cache.js.html">angular-rest-cache.js</a>, <a href="angular-rest-cache.js.html#line49">line 49</a>
+            <a href="angular-rest-template.js.html">angular-rest-template.js</a>, <a href="angular-rest-template.js.html#line169">line 169</a>
         </div>
         
     </div>
@@ -666,7 +525,7 @@
     
     
     <div class="description">
-        <p>Destroy bucket cache</p>
+        <p>Performs a DELETE request in the API</p>
     </div>
     
 
@@ -697,7 +556,7 @@
 	
         <tr>
             
-                <td class="name"><code>bucket</code></td>
+                <td class="name"><code>action</code></td>
             
             
             <td class="type">
@@ -713,14 +572,30 @@
             
             <td class="description last">
                 
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
+                <p>The action path</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+            
+            <td class="type">
+            
                 
-                <p>The bucket name to destroy, if none will destroy all buckets</p></td>
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The input to the GET request</p></td>
         </tr>
 	
 	
@@ -762,6 +637,516 @@
     
     
     
+    
+    
+    
+
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="get">
+            
+            get<span class="signature">(action, input, config)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{HttpPromise}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="angular-rest-template.js.html">angular-rest-template.js</a>, <a href="angular-rest-template.js.html#line70">line 70</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Performs a GET request in the API</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The action path</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The input to the GET request</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The cache config</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Performing a simple GET request to /api/user/me</p>
+    
+
+    
+    <pre class="prettyprint"><code>$api.get('user/me').then(function(response) {
+  console.log(response.data.user);
+});</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="post">
+            
+            post<span class="signature">(action, input, config)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{HttpPromise}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="angular-rest-template.js.html">angular-rest-template.js</a>, <a href="angular-rest-template.js.html#line109">line 109</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Performs a POST request in the API</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The action path</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The input to the POST request</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The cache config</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Performing a simple POST request to /api/user/login</p>
+    
+
+    
+    <pre class="prettyprint"><code>$api.post('user/login', {
+  email: 'test@company.com'
+  password: '1233456'
+}).then(function(response) {
+  console.log(response.data.user);
+});</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="put">
+            
+            put<span class="signature">(action, input)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{HttpPromise}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="angular-rest-template.js.html">angular-rest-template.js</a>, <a href="angular-rest-template.js.html#line139">line 139</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Performs a PUT request in the API</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The action path</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>The input to the GET request</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+
     
     
     
