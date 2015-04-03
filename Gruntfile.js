@@ -11,24 +11,9 @@ module.exports = function (grunt) {
         ],
         dest: 'lib/dist/js/angular-rest-template.js'
       },
-      withAsync: {
-        src: [
-          'lib/bower_components/async/lib/async.js',
-          'lib/src/**.js'
-        ],
-        dest: 'lib/dist/js/angular-rest-template-with-async.js'
-      },
-      withNgStorage: {
-        src: [
-          'lib/bower_components/ngstorage/ngstorage.js',
-          'lib/src/**.js'
-        ],
-        dest: 'lib/dist/js/angular-rest-template-with-ng-storage.js'
-      },
       full: {
         src: [
           'lib/bower_components/async/lib/async.js',
-          'lib/bower_components/ngstorage/ngstorage.js',
           'lib/src/**.js'
         ],
         dest: 'lib/dist/js/angular-rest-template-full.js'
@@ -39,8 +24,6 @@ module.exports = function (grunt) {
       minify: {
         files: {
           'lib/dist/js/angular-rest-template.min.js': ['lib/dist/js/angular-rest-template.js'],
-          'lib/dist/js/angular-rest-template-with-async.min.js': ['lib/dist/js/angular-rest-template-with-async.js'],
-          'lib/dist/js/angular-rest-template-with-ng-storage.min.js': ['lib/dist/js/angular-rest-template-with-ng-storage.js'],
           'lib/dist/js/angular-rest-template-full.min.js': ['lib/dist/js/angular-rest-template-full.js']
         }
       }
