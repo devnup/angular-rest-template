@@ -8,3 +8,4 @@ angular-rest-template
 - [2015-04-03] **v0.0.5-alpha**: Unstable alpha release for testing compatibility, cache implemented and major bug fixes
 - [2015-04-03] **v0.0.6-alpha**: Bug fixes
 - [2015-04-03] **v0.0.7-alpha**: Removed ngStorage from build
+- [2015-04-03] **v0.0.8-alpha**: Template build prototype for multiple APIs with different domains
