@@ -198,17 +198,16 @@ angular.module('com.devnup.rest', [
      */
       function ($util, $http, $cache) {
 
-      var base = '/api/';
-      var cache = false;
+      var Template = function () {
 
-      var isCacheEnabled = function () {
-        return !!cache;
-      };
+        var base = '';
+        var cache = false;
 
-      // Service public interface
-      return {
+        var isCacheEnabled = function () {
+          return !!cache;
+        };
 
-        'callback': $util.callback,
+        this['callback'] = $util.callback;
 
         /**
          * Set configuration variables
@@ -218,11 +217,48 @@ angular.module('com.devnup.rest', [
          * @param {Object} input The input config
          * @param {String} input.base The base to all requests
          */
-        'config': function (input) {
+        this['config'] = function (input) {
           base = input.base;
           cache = input.cache;
           $cache.config(cache);
-        },
+        };
+
+        this['request'] = function (method, action, input, config) {
+
+          var request = function(url, input, cache) {
+            return $http({
+              method: method.toUpperCase(),
+              url: url,
+              params: method.toLowerCase() === 'get' ? input : {},
+              data: method.toLowerCase() !== 'get' ? input : {},
+              headers: config.headers || {}
+            });
+          };
+
+          input = input || {};
+          config = config || {cache: false};
+
+          // If cache is enabled, call action bucket
+          if (isCacheEnabled() &amp;&amp; (config.cache !== false &amp;&amp; config.cache.enabled !== false)) {
+
+            var bucket = $cache.bucket(action, {
+              min: config.cache.min ? parseInt(config.cache.min) : config.cache.min,
+              max: config.cache.max ? parseInt(config.cache.max) : config.cache.max,
+              hash: function () {
+                return JSON.stringify(input);
+              },
+              refresh: function () {
+                return $util.wrapper(request, [base + action, input, config.cache]);
+              }
+            });
+
+            // Refresh the bucket
+            return bucket.refresh();
+          }
+
+          $cache.destroy(action);
+          return $util.wrapper(request, [base + action, input, config.cache]);
+        };
 
         /**
          * Performs a GET request in the API
@@ -239,27 +275,10 @@ angular.module('com.devnup.rest', [
          * @param {Object} config The cache config
          * @returns {HttpPromise}
          */
-        'get': function (action, input, config) {
-
-          var request = $http.get;
-          config = config || {cache: false};
-
-          // If cache is enabled, call action bucket
-          if (isCacheEnabled() &amp;&amp; (config.cache !== false &amp;&amp; config.cache.enabled !== false)) {
-
-            var bucket = $cache.bucket('GET:' + action, {
-              refresh: function () {
-                return $util.wrapper(request, [base + action, input, config.cache]);
-              }
-            });
-
-            // Refresh the bucket
-            return bucket.refresh();
-          }
-
-          // If cache is disabled, just make the request
-          return $util.wrapper(request, [base + action, input, config.cache]);
-        },
+        this['get'] = function (action, input, config) {
+          var args = ['get'].concat(Array.prototype.slice.call(arguments));
+          return this['request'].apply(this, args);
+        };
 
         /**
          * Performs a POST request in the API
@@ -279,27 +298,10 @@ angular.module('com.devnup.rest', [
          * @param {Object} config The cache config
          * @returns {HttpPromise}
          */
-        'post': function (action, input, config) {
-
-          var request = $http.post;
-          config = config || {cache: false};
-
-          // If cache is enabled, call action bucket
-          if (isCacheEnabled() &amp;&amp; config.cache !== false) {
-
-            var bucket = $cache.bucket('POST:' + action, {
-              refresh: function () {
-                return $util.wrapper(request, [base + action, input, config.cache])
-              }
-            });
-
-            // Refresh the bucket
-            return bucket.refresh();
-          }
-
-          // If cache is disabled, just make the request
-          return $util.wrapper(request, [base + action, input, config.cache]);
-        },
+        this['post'] = function (action, input, config) {
+          var args = ['post'].concat(Array.prototype.slice.call(arguments));
+          return this['request'].apply(this, args);
+        };
 
         /**
          * Performs a PUT request in the API
@@ -310,27 +312,10 @@ angular.module('com.devnup.rest', [
          * @param {Object} input The input to the GET request
          * @returns {HttpPromise}
          */
-        'put': function (action, input) {
-
-          var request = $http.put;
-          config = config || {cache: false};
-
-          // If cache is enabled, call action bucket
-          if (isCacheEnabled() &amp;&amp; config.cache !== false) {
-
-            var bucket = $cache.bucket('PUT:' + action, {
-              refresh: function () {
-                return $util.wrapper(request, [base + action, input, config.cache]);
-              }
-            });
-
-            // Refresh the bucket
-            return bucket.refresh();
-          }
-
-          // If cache is disabled, just make the request
-          return $util.wrapper(request, [base + action, input, config.cache]);
-        },
+        this['put'] = function (action, input) {
+          var args = ['put'].concat(Array.prototype.slice.call(arguments));
+          return this['request'].apply(this, args);
+        };
 
         /**
          * Performs a DELETE request in the API
@@ -341,29 +326,20 @@ angular.module('com.devnup.rest', [
          * @param {Object} input The input to the GET request
          * @returns {HttpPromise}
          */
-        'delete': function (action, input, config) {
+        this['delete'] = function (action, input, config) {
+          var args = ['delete'].concat(Array.prototype.slice.call(arguments));
+          return this['request'].apply(this, args);
+        };
 
-          var request = $http.delete;
-          config = config || {cache: false};
+      };
 
-          // If cache is enabled, call action bucket
-          if (isCacheEnabled() &amp;&amp; config.cache !== false) {
+      Template.prototype.build = function (config) {
+        var template = new Template();
+        template.config(config);
+        return template;
+      };
 
-            var bucket = $cache.bucket('DEL:' + action, {
-              refresh: function () {
-                return $util.wrapper(request, [base + action, input, config.cache]);
-              }
-            });
-
-            // Refresh the bucket
-            return bucket.refresh();
-          }
-
-          // If cache is disabled, just make the request
-          return $util.wrapper(request, [base + action, input, config.cache]);
-
-        }
-      }
+      return new Template();
     }
   ]);</code></pre>
         </article>
@@ -377,7 +353,7 @@ angular.module('com.devnup.rest', [
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Fri Apr 03 2015 18:05:38 GMT-0300 (BRT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta1</a> on Tue Apr 07 2015 10:49:34 GMT-0300 (BRT)
         </footer>
     </div>
 </div>
