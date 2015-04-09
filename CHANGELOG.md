@@ -12,3 +12,4 @@ angular-rest-template
 - [2015-04-04] **v0.0.9-alpha**: Callback cache for auto updating the controller and the scopes
 - [2015-04-04] **v0.0.10-alpha**: Base URL not universal anymore, every $rest.build has its one
 - [2015-04-04] **v0.0.11-alpha**: Better wrapper for $http
+- [2015-04-04] **v0.0.12-alpha**: Multiple instances sample in HTML and new boilerplate fixes
