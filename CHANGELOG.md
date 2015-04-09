@@ -14,3 +14,4 @@ angular-rest-template
 - [2015-04-04] **v0.0.11-alpha**: Better wrapper for $http
 - [2015-04-04] **v0.0.12-alpha**: Multiple instances sample in HTML and new boilerplate fixes
 - [2015-04-04] **v0.0.13-alpha**: Building min files
+- [2015-04-04] **v0.0.14-alpha**: Fix for CFG in Template
